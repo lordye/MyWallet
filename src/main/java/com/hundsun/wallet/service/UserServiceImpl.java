@@ -75,8 +75,6 @@ public class UserServiceImpl implements UserService {
     public boolean login(UserEntity userEntity) {
         UserEntity user = this.userDao.getByName(userEntity.getUsername());
         if (user != null){
-            System.out.println(user.getPassword());
-            System.out.println(user.getPassword());
             if (user.getPassword().equals(userEntity.getPassword())){
                 return true;
             }

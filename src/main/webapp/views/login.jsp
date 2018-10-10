@@ -68,7 +68,6 @@
         }
         function login() {
             $("#exampleInputPassword3").val(hex_md5($("#exampleInputPassword3").val()));
-            alert($("#exampleInputPassword3").val());
             $("#login_form").attr("action","/login");
             $("#login_form").submit();
         }
