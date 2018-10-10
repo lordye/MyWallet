@@ -25,6 +25,27 @@
             $("#sign_form").attr("action","/sign_up");
             $("#sign_form").submit();
         }
+        function checkUsername() {
+            var userName = $("#inputEmail3").val();
+            if (userName == null || userName == "" || userName == " "){
+                $("#user-name-tip").css('display','');
+                $("#user-name-tip").removeClass("alert-success").addClass("alert-danger");
+                $("#user-name-tip").text("用户名为空！");
+                return ;
+            }
+            $.post("/ajax_check_username",{
+               username : userName,
+            },function (data) {
+                $("#user-name-tip").css('display','');
+                if (data == "可以注册"){
+                    $("#user-name-tip").removeClass("alert-danger").addClass("alert-success");
+                    $("#user-name-tip").text(data);
+                }else {
+                    $("#user-name-tip").removeClass("alert-success").addClass("alert-danger");
+                    $("#user-name-tip").text(data);
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -37,27 +58,31 @@
     <form id="sign_form" class="form-horizontal" action="" method="post">
         <div class="form-group"  style="width: 500px; margin:15px auto; ">
             <label for="inputEmail3" class="col-sm-2 control-label">用户名:</label>
-            <div class="col-sm-10">
-                <input style="width: 300px;" name="username" type="text" class="form-control" id="inputEmail3" placeholder="请输入用户名">
+            <div class="col-sm-10" style="width: 300px">
+                <input style="width: 300px;" name="username" type="text" class="form-control" id="inputEmail3" placeholder="请输入用户名" onblur="checkUsername()">
             </div>
+            <div id="user-name-tip" class="alert alert-success" role="alert" style="height:30px; width: 200px;margin:0px 0px 0px 400px; padding: 5px 0px 0px 0px;display: none;"></div>
         </div>
         <div class="form-group" style="width: 500px; margin:15px auto; ">
             <label for="inputPassword3" class="col-sm-2 control-label">密码:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="width: 300px">
                 <input style="width: 300px;"  type="password" class="form-control" id="inputPassword3" placeholder="请输入密码">
             </div>
+            <div class="alert alert-success" role="alert" style="height:30px; width: 200px;margin:0px 0px 0px 400px; padding: 5px 0px 0px 0px;display: none;"></div>
         </div>
         <div class="form-group" style="width: 500px; margin:15px auto; ">
             <label for="inputPassword2"  class="col-sm-2 control-label" style="white-space: nowrap">确认密码:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="width: 300px">
                 <input style="width: 300px;" name="password" type="password" class="form-control" id="inputPassword2" placeholder="请确认密码">
             </div>
+            <div class="alert alert-success" role="alert" style="height:30px; width: 200px;margin:0px 0px 0px 400px; padding: 5px 0px 0px 0px;display: none;"></div>
         </div>
         <div class="form-group"  style="width: 500px; margin:15px auto; ">
             <label for="inputEmail1" class="col-sm-2 control-label">手机号:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="width: 300px">
                 <input style="width: 300px;" name="reserve1" type="text" class="form-control" id="inputEmail1" placeholder="请输入手机号">
             </div>
+            <div class="alert alert-success" role="alert" style="height:30px; width: 200px;margin:0px 0px 0px 400px; padding: 5px 0px 0px 0px;display: none;"></div>
         </div>
         <div class="form-group"  style="width: 500px; margin:15px auto; ">
             <label for="inputEmail4" class="col-sm-2 control-label">验证码:</label>
@@ -68,9 +93,10 @@
         </div>
         <div class="form-group"  style="width: 500px; margin:15px auto; ">
             <label for="inputEmail2" class="col-sm-2 control-label">邮箱:</label>
-            <div class="col-sm-10">
+            <div class="col-sm-10" style="width: 300px">
                 <input style="width: 300px;" name="reserve2" type="email" class="form-control" id="inputEmail2" placeholder="请输入邮箱">
             </div>
+            <div class="alert alert-success" role="alert" style="height:30px; width: 200px;margin:0px 0px 0px 400px; padding: 5px 0px 0px 0px;display: none;"></div>
         </div>
         <div class="form-group"   style="width: 500px; margin:15px auto; text-align:left">
             <div class="col-sm-offset-2 col-sm-10">

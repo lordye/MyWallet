@@ -83,6 +83,20 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * @param userName
+     * @return
+     */
+    @Transactional
+    public String checkUsername(String userName) {
+        UserEntity user = this.userDao.getByName(userName);
+        if (user == null){
+            return "可以注册";
+        }else {
+            return "该用户已存在！";
+        }
+    }
+
+    /**
      * 更新用户信息
      *
      * @param userEntity

@@ -19,6 +19,13 @@ public interface UserService {
     boolean login(UserEntity userEntity);
 
     /**
+     *
+     * @param userName
+     * @return
+     */
+    String checkUsername(String userName);
+
+    /**
      * 更新用户信息
      * @param userEntity
      */

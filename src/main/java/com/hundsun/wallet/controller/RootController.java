@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("")
@@ -54,4 +55,10 @@ public class RootController {
         return "register";
     }
 
+    @RequestMapping(value = "/ajax_check_username", method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String checkUsername(HttpServletRequest request){
+        String username = request.getParameter("username");
+        return this.userService.checkUsername(username);
+    }
 }
